@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: serizawa-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  eureka-server:
+    build: ./eureka-server
+    container_name: serizawa-eureka
+    ports:
+      - "8761:8761"
+    depends_on:
+      - postgres
+
+  config-server:
+    build: ./config-server
+    container_name: serizawa-config
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+
+  main-service:
+    build: ./main-service
+    container_name: serizawa-main
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/serizawa_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres
+      - eureka-server
+      - config-server
+
+volumes:
+  postgres_data:
