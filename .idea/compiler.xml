@@ -2,22 +2,38 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="serizawa-eureka-server" />
+        <module name="config-server" />
+        <module name="eureka-server" />
+      </profile>
+      <profile name="Annotation profile for serizawa" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
+        </processorPath>
+        <module name="main-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="courses-service" target="21" />
       <module name="enrollment-service" target="21" />
+      <module name="serizawa-eureka-server" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
       <module name="courses-service" options="-parameters" />
       <module name="enrollment-service" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="main-service" options="-parameters" />
       <module name="serizawa-eureka-server" options="-parameters" />
     </option>
   </component>

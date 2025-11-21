@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: kz.bitlab.devf1zIk.service.course.ChapterServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in kz.bitlab.devf1zIk.service.course.ChapterServiceImplTest

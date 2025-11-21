@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="serizawa">
+        <createTable tableName="course">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="created_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="serizawa">
+        <createTable tableName="chapter">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="order_num" type="INT"/>
+            <column name="course_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="chapter"
+                                 baseColumnNames="course_id"
+                                 referencedTableName="course"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_chapter_course"/>
+    </changeSet>
+
+    <changeSet id="3" author="serizawa">
+        <createTable tableName="lesson">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="content" type="TEXT"/>
+            <column name="order_num" type="INT"/>
+            <column name="chapter_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="lesson"
+                                 baseColumnNames="chapter_id"
+                                 referencedTableName="chapter"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_lesson_chapter"/>
+    </changeSet>
+
+    <changeSet id="4" author="serizawa">
+        <insert tableName="course">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Java Developer"/>
+            <column name="description" value="Полный курс по Java для начинающих и опытных разработчиков."/>
+            <column name="created_time" valueDate="2025-11-20T12:00:00"/>
+            <column name="updated_time" valueDate="2025-11-20T12:00:00"/>
+        </insert>
+
+        <insert tableName="course">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Python Developer"/>
+            <column name="description" value="Полный курс по Python с практическими примерами."/>
+            <column name="created_time" valueDate="2025-11-20T12:00:00"/>
+            <column name="updated_time" valueDate="2025-11-20T12:00:00"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="5" author="serizawa">
+        <insert tableName="chapter">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="if-else conditions"/>
+            <column name="description" value="Условные конструкции if и else в Java."/>
+            <column name="order_num" valueNumeric="1"/>
+            <column name="course_id" valueNumeric="1"/>
+            <column name="created_time" valueDate="2025-11-20T12:00:00"/>
+            <column name="updated_time" valueDate="2025-11-20T12:00:00"/>
+        </insert>
+
+        <insert tableName="chapter">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Loops"/>
+            <column name="description" value="Циклы for, while и do-while в Java."/>
+            <column name="order_num" valueNumeric="2"/>
+            <column name="course_id" valueNumeric="1"/>
+            <column name="created_time" valueDate="2025-11-20T12:00:00"/>
+            <column name="updated_time" valueDate="2025-11-20T12:00:00"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="6" author="serizawa">
+        <insert tableName="lesson">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Lecture for if-else conditions"/>
+            <column name="description" value="Теоретическая часть по условным конструкциям."/>
+            <column name="content" value="Полный текст лекции по if-else..."/>
+            <column name="order_num" valueNumeric="1"/>
+            <column name="chapter_id" valueNumeric="1"/>
+            <column name="created_time" valueDate="2025-11-20T12:00:00"/>
+            <column name="updated_time" valueDate="2025-11-20T12:00:00"/>
+        </insert>
+
+        <insert tableName="lesson">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Practice for if-else conditions"/>
+            <column name="description" value="Практические упражнения по условным конструкциям."/>
+            <column name="content" value="Полный текст практики по if-else..."/>
+            <column name="order_num" valueNumeric="2"/>
+            <column name="chapter_id" valueNumeric="1"/>
+            <column name="created_time" valueDate="2025-11-20T12:00:00"/>
+            <column name="updated_time" valueDate="2025-11-20T12:00:00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
