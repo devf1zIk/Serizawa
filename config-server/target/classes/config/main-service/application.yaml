@@ -1,12 +1,8 @@
 spring:
-  application:
-    name: main-service
-  profiles:
-    active: main-service
   datasource:
     url: jdbc:postgresql://localhost:5432/serizawa
     username: postgres
-    password: karakesek
+    password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

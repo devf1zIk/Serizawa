@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  config:
+    import: "configserver:"
+
+  main:
+    allow-bean-definition-overriding: true
+
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        useRandomPolicy: true
+        max-interval: 6000
+      discovery:
+        enabled: true
+        serviceId: config-server

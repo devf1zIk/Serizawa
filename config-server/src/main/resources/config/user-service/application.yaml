@@ -1,0 +1,17 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.url}/realms/${keycloak.realm}
+
+keycloak:
+  username: bitlab_admin
+  password: karakesek
+  grant-type: password
+  client: bitlab-user-service-client
+  client-secret: ltko2wy4GCGBc8FbLB5XbBr8m6aypZVT
+  url: http://localhost:8081/auth
+  realm: f1zIk-realm
+server:
+  port: 8080
