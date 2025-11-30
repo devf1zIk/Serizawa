@@ -10,6 +10,7 @@ spring:
           searchLocations:
             - classpath:config/main-service/{application}
             - classpath:config/user-service/{application}
+            - classpath:config/file-service/{application}
 server:
   port: 8888
 eureka:
