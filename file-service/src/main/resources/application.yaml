@@ -1,0 +1,28 @@
+minio:
+  url:  http://localhost:9000
+  user: root
+  password: karakesek
+  bucket: dev-bucket
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+  application:
+    name: file-service
+  profiles:
+    active: dev
+  config:
+    import: "configserver:"
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        useRandomPolicy: true
+        max-interval: 6000
+      discovery:
+        enabled: true
+        serviceId: config-server
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
