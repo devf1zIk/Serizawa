@@ -8,7 +8,7 @@ spring:
     multipart:
       max-file-size: 50MB
   application:
-    name: user-service
+    name: file-service
   profiles:
     active: dev
   config:
@@ -25,4 +25,4 @@ spring:
         enabled: true
         serviceId: config-server
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    change-log: classpath:/db/changelog/db.changelog-master.xml
